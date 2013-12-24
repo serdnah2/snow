@@ -4,7 +4,6 @@ window.onload = function() {
         self = this;
         this.cnv = document.getElementById('snow');
         this.ctx = this.cnv.getContext('2d');
-        this.ball = null;
         this.particles = [];
         this.totalParticles = 70;
         this.angle = 0;
@@ -32,13 +31,6 @@ window.onload = function() {
                 }
             }
         };
-        this.load = function() {
-            this.ball = new Image();
-            this.ball.src = 'img/ball.png';
-            this.ball.onload = function() {
-                self.init();
-            };
-        };
         this.init = function() {
             for (var i = 0; i < this.totalParticles; i++) {
                 this.particles.push(new this.particle());
@@ -47,7 +39,6 @@ window.onload = function() {
         };
         this.draw = function() {
             this.ctx.clearRect(0, 0, this.cnv.width, this.cnv.height);
-            //this.ctx.drawImage(this.ball, 0, 0, this.cnv.width, this.cnv.height);
             this.ctx.save();
             this.ctx.fillStyle = "rgba(234, 345, 123, 0)";
             this.ctx.beginPath();
@@ -76,8 +67,8 @@ window.onload = function() {
         };
     };
 
-    app = new Snow();
-    app.load();
+    var app = new Snow();
+    app.init();
 };
 
 window.requestAnimFrame = (function() {
